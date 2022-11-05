@@ -16,13 +16,13 @@ public class Task {
     public void run() {
         do {
             prepareBeforeTaskOne();
-            System.out.println("*******");
+            System.out.println("******");
             System.out.println("Task 2");
-            System.out.println("*******");
+            System.out.println("******");
             taskTwo();
             System.out.println("Zakonczylem poszukiwania:");
             System.out.println("Biezacy punkt: [" + Pz[0] + ", " + Pz[1] + "]; f(x) wynosi: " + f(Pz));
-            System.out.println("---");
+            System.out.println();
         } while (!nothingChanged);
 
     }
@@ -31,12 +31,12 @@ public class Task {
         nothingChanged = true;
         secondTested = false;
         k = 1;
-        System.out.println("*******");
+        System.out.println("******");
         System.out.println("Task 1");
-        System.out.println("*******");
+        System.out.println("******");
         taskOne();
         System.out.println("---");
-        System.out.println("Ostatecznie wybrany punkt: [" + P0[0] + ", " + P0[1] + "] y = " + F0 + " a krok: " + v0);
+        System.out.println("Ostatecznie wybrany punkt: [" + P0[0] + "; " + P0[1] + "] y = " + F0 + " a krok: " + v0);
     }
 
     void taskOne() {
@@ -45,7 +45,7 @@ public class Task {
         if (k == 1) Pr = new double[]{Pz[0] + v0, Pz[1]}; //P roboczy
         if (k == 2) Pr = new double[]{Pz[0], Pz[1] + v0}; //P roboczy dla 2 wymiaru
         double Fr = f(Pr);
-        System.out.println("Aktualnie analizuje punkt dla " + k + " zmiennej: [" + Pr[0] + ";" + Pr[1] + "] dla ktorej f(x) wynosi: " + Fr + " a krok: " + v0);
+        System.out.println("Aktualnie analizuje punkt dla " + k + " zmiennej: [" + Pr[0] + "; " + Pr[1] + "] dla ktorej f(x) wynosi: " + Fr + " a krok: " + v0);
         if (Fr < F0) {
             System.out.println("Sukces - ten punkt staje sie nowym punktem roboczym.");
             P0 = Pr;
@@ -64,7 +64,7 @@ public class Task {
         }
         Pz = P0;
         if (k < N) {
-            System.out.println("---");
+            System.out.println();
             System.out.println("Sprawdzam druga zmienna");
             secondTested = false;
             k++;
@@ -90,15 +90,18 @@ public class Task {
 
     void taskFour() {
         if (v0 > epsilon) {
+            System.out.println();
+            System.out.println("Zmieniam wartosc kroku: ");
             System.out.println("Epsilon: " + epsilon);
-            System.out.println("Stare v0: " + v0);
+            System.out.println("Stara wartosc kroku: " + v0);
             v0 = 0.1 * v0;
-            System.out.println("Nowe v0: " + v0);
+            System.out.println("Nowa wartosc kroku: " + v0);
+            System.out.println();
             nothingChanged = false;
         } else {
-            System.out.println("***");
+            System.out.println("**********************************************************************");
             System.out.println("Przekroczono oczekiwana dokladnosc (" + epsilon + "). Algorytm konczy dzialanie");
-            System.out.println("***");
+            System.out.println();
             nothingChanged = true;
         }
     }
